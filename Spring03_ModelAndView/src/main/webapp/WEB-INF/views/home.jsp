@@ -14,6 +14,8 @@
 	<ul>
 		<li><a href="test/play.html">놀러가기(DispatcherServlet 을 거치지 않음)</a></li>
 		<li><a href="test/study.jsp">공부하기(DispatcherServlet 을 거치지 않음)</a></li>
+		<li><a href="friend/list.do">친구 목록보기</a></li>
+		<li><a href="friend/list2.do">친구 목록보기2</a></li>
 	</ul>
 	<h2>공지 사항 입니다.</h2>
 	<ul>
