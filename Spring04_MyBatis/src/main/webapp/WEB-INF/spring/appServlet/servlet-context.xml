@@ -30,7 +30,10 @@
 	 -->
 	
 	
-	<!-- SqlSessionFactory 객체 -->
+	<!-- 
+		SqlSessionFactory 객체 
+		value="classpath: 여기에 Configuration.xml 문서의 위치를 정확히 작성한다."/>
+	-->
 	<beans:bean id="sessionFactory" 
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
