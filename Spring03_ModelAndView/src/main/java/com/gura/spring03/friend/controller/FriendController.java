@@ -6,8 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gura.spring03.friend.dto.FriendDto;
 
 @Controller
 public class FriendController {
@@ -99,7 +103,48 @@ public class FriendController {
 		//view page 로 forward 이동해서 결과 응답하기 
 		return "friend/insert";
 	}
+	/*
+	 *  "num" 이라는 파라미터 명으로 전달되는 파라미터 => @RequestParam int num
+	 *  "name" 이라는 파라미터 명으로 전달되는 파라미터 => @RequestParam String name
+	 *  "phone" 이라는 파라미터 명으로 전달되는 파라미터 => @RequestParam String phone
+	 */
+	@RequestMapping("/friend/insert2")
+	public String insert(@RequestParam int num,
+			@RequestParam String name, @RequestParam String phone) {
+		//추출된 정보 테스트로 출력해 보기
+		System.out.println(num+"|"+name+"|"+phone);
+		return "friend/insert";
+	}
+	/*
+	 *  컨트롤러의 메소드에 dto 를 인자로 받게 선언해 놓으면
+	 *  요청 파라미터가 자동 추출 되어서 dto 에 저장되어서 전달된다.
+	 *  "num" 이라는 파라미터 명으로 전달되는 파라미터 => dto  의 num 이라는 필드에 저장
+	 *  "name" 이라는 파라미터 명으로 전달되는 파라미터 => dto  의 name 이라는 필드에 저장
+	 *  "phone" 이라는 파라미터 명으로 전달되는 파라미터 => dto  의 phone 이라는 필드에 저장
+	 */
+	@RequestMapping("/friend/insert3")
+	public String insert(@ModelAttribute FriendDto dto) {
+		/*	
+		 * 	아래의 작업을 Spring 프레임워크가 해준다.
+			int num=Integer.parseInt(request.getParameter("num"));
+			String name=request.getParameter("name");
+			String phone=request.getParameter("phone");
+			FriendDto dto=new FriendDto();
+			dto.setNum(num);
+			dto.setName(name);
+			dto.setPhone(phone);
+		 */
+		System.out.println(dto.getNum()+"|"+dto.getName()+"|"+dto.getPhone());
+		return "friend/insert";
+	}
 }
+
+
+
+
+
+
+
 
 
 
