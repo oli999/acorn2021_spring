@@ -81,6 +81,24 @@ public class FriendController {
 		//친구 목록 보기로 리다일렉트 이동 시키기
 		return "redirect:/friend/list.do";
 	}
+	//친구 추가 폼 요청 처리 
+	@RequestMapping("/friend/insertform")
+	public String insertform() {
+		//수행할 비즈니스 로직은 없고 단순히 view page 정보만 리턴하는 경우도 있다. 
+		return "friend/insertform";
+	}
+	//친구 추가 요청처리
+	@RequestMapping("/friend/insert")
+	public String insert(HttpServletRequest request) {
+		//폼 전송되는 파라미터 추출 
+		int num=Integer.parseInt(request.getParameter("num"));
+		String name=request.getParameter("name");
+		String phone=request.getParameter("phone");
+		//추출된 정보 테스트로 출력해 보기
+		System.out.println(num+"|"+name+"|"+phone);
+		//view page 로 forward 이동해서 결과 응답하기 
+		return "friend/insert";
+	}
 }
 
 
