@@ -22,7 +22,14 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Override
 	public List<MemberDto> getList() {
-		//요게 끝입니다. 
+		/*
+		 *  Mapper.xml 문서의 namespace => member
+		 *  sql 의 id => getList
+		 *  parameterType => 없음
+		 *  resultType => MemberDto
+		 */
+		
+		//.selectList() 를 호출했을때 resultType 이 곧 List 의 Generic type 이 됩니다.
 		List<MemberDto> list=session.selectList("member.getList");
 		
 		return list;
@@ -66,6 +73,8 @@ public class MemberDaoImpl implements MemberDao{
 		 *  parameterType => int
 		 *  resultType => MemberDto
 		 */
+		
+		//.selectOne() 을 호출했을때 resultType 이 곧 리턴 타입이 됩니다.
 		MemberDto dto=session.selectOne("member.getData", num);
 		return dto;
 	}
