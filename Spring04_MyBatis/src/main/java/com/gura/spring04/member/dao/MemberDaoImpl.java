@@ -28,6 +28,48 @@ public class MemberDaoImpl implements MemberDao{
 		return list;
 	}
 
+	@Override
+	public void insert(MemberDto dto) {
+		/*
+		 *  Mapper.xml 문서의 namespace => member
+		 *  sql 의 id => insert
+		 *  parameterType => MemberDto
+		 */
+		session.insert("member.insert", dto);
+	}
+
+	@Override
+	public void update(MemberDto dto) {
+		/*
+		 *  Mapper.xml 문서의 namespace => member
+		 *  sql 의 id => update
+		 *  parameterType => MemberDto
+		 */
+		session.update("member.update", dto);
+	}
+
+	@Override
+	public void delete(int num) {
+		/*
+		 *  Mapper.xml 문서의 namespace => member
+		 *  sql 의 id => delete
+		 *  parameterType => int
+		 */
+		session.delete("member.delete", num);
+	}
+
+	@Override
+	public MemberDto getData(int num) {
+		/*
+		 *  Mapper.xml 문서의 namespace => member
+		 *  sql 의 id => getData
+		 *  parameterType => int
+		 *  resultType => MemberDto
+		 */
+		MemberDto dto=session.selectOne("member.getData", num);
+		return dto;
+	}
+
 }
 
 
