@@ -29,7 +29,6 @@
 		dataSource.setJndiName("java:comp/env/jdbc/myoracle");
 	 -->
 	
-	
 	<!-- 
 		SqlSessionFactory 객체 
 		value="classpath: 여기에 Configuration.xml 문서의 위치를 정확히 작성한다."/>
