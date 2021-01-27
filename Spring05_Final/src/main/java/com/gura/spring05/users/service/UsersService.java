@@ -21,6 +21,8 @@ public interface UsersService {
 			HttpServletResponse response);
 	//개인정보를 ModelAndView  객체에 담아주는 메소드
 	public void getInfo(ModelAndView mView, HttpSession session);
+	//개인정보를 삭제하는 처리를 하는 메소드
+	public void deleteUser(HttpSession session);
 }
 
 

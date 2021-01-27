@@ -21,6 +21,13 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
+	//회원 탈퇴 요청 처리
+	@RequestMapping("/users/private/delete")
+	public String delete(HttpSession session) {
+		service.deleteUser(session);
+		return "users/private/delete";
+	}
+	
 	//개인정보 보기 요청처리
 	@RequestMapping("/users/private/info")
 	public ModelAndView info(ModelAndView mView, HttpSession session) {

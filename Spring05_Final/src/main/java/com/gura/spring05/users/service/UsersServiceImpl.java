@@ -125,6 +125,16 @@ public class UsersServiceImpl implements UsersService{
 		//읽어온 정보를 ModelAndView 객체에 담아준다.
 		mView.addObject("dto", dto);
 	}
+
+	@Override
+	public void deleteUser(HttpSession session) {
+		//로그인된 아이디를 읽어온다. 
+		String id=(String)session.getAttribute("id");
+		//DB 에서 삭제
+		dao.delete(id);
+		//로그아웃 처리
+		session.removeAttribute("id");
+	}
 }
 
 
