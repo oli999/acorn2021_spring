@@ -1,6 +1,8 @@
 package com.gura.spring05.users.controller;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -136,7 +139,8 @@ public class UsersController {
 	}
 	//ajax 요청 처리 
 	@RequestMapping("/users/checkid")
-	public ModelAndView checkid(@RequestParam String inputId,
+	@ResponseBody
+	public Map<String, Object> checkid(@RequestParam String inputId,
 			ModelAndView mView) {
 		/*
 		 * (@RequestParam String inputId) 
@@ -146,10 +150,10 @@ public class UsersController {
 		 */
 		//서비스를 이용해서 해당 아이디가 존재하는지 여부를 알아낸다.
 		boolean isExist=service.isExistId(inputId);
-		//ModelAndView 객체에 해당 정보를 담고 view page 로 forward 이동해서 응답
-		mView.addObject("isExist", isExist);
-		mView.setViewName("users/checkid");
-		return mView;
+		// {"isExist":true} or {"isExist":false} 를 응답하기 위한 Map 구성
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isExist", isExist);
+		return map;
 	}
 }
 
