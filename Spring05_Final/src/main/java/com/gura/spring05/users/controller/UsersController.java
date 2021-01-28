@@ -24,6 +24,16 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
+	//개인 정보 수정 요청 처리
+	@RequestMapping(value = "/users/private/update", 
+			method = RequestMethod.POST)
+	public ModelAndView update(UsersDto dto, HttpSession session,
+			ModelAndView mView) {
+		service.updateUser(dto, session);
+		mView.setViewName("users/private/update");
+		return mView;
+	}
+	
 	//개인정보 수정폼 요청 처리
 	@RequestMapping("/users/private/updateform")
 	public ModelAndView updateform(ModelAndView mView, 
