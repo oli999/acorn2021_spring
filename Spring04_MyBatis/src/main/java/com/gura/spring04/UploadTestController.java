@@ -48,6 +48,41 @@ public class UploadTestController {
 		request.setAttribute("title", title);
 		return "upload";
 	}
+	@RequestMapping("/upload2")
+	public String upload2(FileDto dto,HttpServletRequest request) {
+		//FileDto  에 있는 MultipartFile 객체의 참조값
+		MultipartFile myFile=dto.getMyFile();
+		//폼 전송된 title
+		String title=dto.getTitle();
+		
+		//원본 파일명 
+		String orgFileName=myFile.getOriginalFilename();
+		//파일의 크기
+		long fileSize=myFile.getSize();
+		//파일을 저장할 실제 경로   "/webapp/upload"   
+		String realPath=request.getServletContext().getRealPath("/upload");
+		File f=new File(realPath);
+		if(!f.exists()) {//만일 존재 하지 않으면
+			f.mkdir();//폴더를 만든다.
+		}
+		//절대 중복이 되지 않을만한 저장할 파일명을 구성한다.
+		String saveFileName=System.currentTimeMillis()+orgFileName;
+		//저장할 파일의 전체 경로를 구성한다.
+		String path=realPath+File.separator+saveFileName;
+		try {
+			//임시폴더에 업로드된 파일을 원하는 위치에 원하는 파일명으로 이동 시킨다.
+			myFile.transferTo(new File(path));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//전송된 정보를 view page 에서 확인 하기 위해 request scope 에 담기  
+		request.setAttribute("orgFileName", orgFileName);
+		request.setAttribute("saveFileName", saveFileName);
+		request.setAttribute("fileSize", fileSize);
+		request.setAttribute("path", path);
+		request.setAttribute("title", title);
+		return "upload";
+	}
 }
 
 
