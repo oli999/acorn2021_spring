@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		alert("수정했습니다.");
+		alert("${dto.writer} 님 글을 수정했습니다.");
 		location.href="${pageContext.request.contextPath }/cafe/detail.do?num=${dto.num}";
 	</script>
 </body>
