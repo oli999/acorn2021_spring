@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,24 @@ public class CafeController {
 	//의존객체 DI
 	@Autowired
 	private CafeService service;
+	
+	@RequestMapping("/cafe/private/delete")
+	public String delete(@RequestParam int num) {
+		service.deleteContent(num);
+		return "cafe/private/delete";
+	}
+	@RequestMapping("/cafe/private/updateform")
+	public ModelAndView updateform(@RequestParam int num,
+			ModelAndView mView) {
+		service.getDetail(num, mView);
+		mView.setViewName("cafe/private/updateform");
+		return mView;
+	}
+	@RequestMapping("/cafe/private/update")
+	public String update(@ModelAttribute("dto") CafeDto dto) {
+		service.updateContent(dto);
+		return "cafe/private/update";
+	}
 	
 	@RequestMapping("/cafe/detail")
 	public ModelAndView detail(@RequestParam int num, ModelAndView mView) {

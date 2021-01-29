@@ -1,6 +1,7 @@
 package com.gura.spring05.cafe.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +14,10 @@ public interface CafeService {
 	public void getList(ModelAndView mView, HttpServletRequest request);
 	//글하나의 정보를 ModelAndView 객체에 담아주는 메소드
 	public void getDetail(int num, ModelAndView mView);
+	//글을 수정하는 메소드
+	public void updateContent(CafeDto dto);
+	//글을 삭제하는 메소드
+	public void deleteContent(int num);
 }
 
 
