@@ -1,11 +1,13 @@
 package com.gura.spring05.cafe.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.cafe.dto.CafeDto;
 import com.gura.spring05.cafe.service.CafeService;
@@ -15,6 +17,17 @@ public class CafeController {
 	//의존객체 DI
 	@Autowired
 	private CafeService service;
+	
+	//글 목록 요청처리
+	@RequestMapping("/cafe/list")
+	public ModelAndView list(ModelAndView mView, 
+			HttpServletRequest request) {
+		
+		service.getList(mView, request);
+		
+		mView.setViewName("cafe/list");
+		return mView;
+	}
 	
 	//카페 새글 저장 요청 처리
 	@RequestMapping(value = "/cafe/private/insert", 
