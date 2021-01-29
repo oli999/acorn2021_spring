@@ -38,12 +38,6 @@ public class CafeDaoImpl implements CafeDao{
 	}
 
 	@Override
-	public List<CafeDto> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<CafeDto> getList(CafeDto dto) {
 		/*
 		 *  parameterType => CafeDto
@@ -62,12 +56,6 @@ public class CafeDaoImpl implements CafeDao{
 	}
 
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int getCount(CafeDto dto) {
 		/*
 		 *  parameterType => CafeDto
@@ -77,6 +65,11 @@ public class CafeDaoImpl implements CafeDao{
 		 */
 		int count=session.selectOne("cafe.getCount", dto);
 		return count;
+	}
+
+	@Override
+	public void addViewCount(int num) {
+		session.update("cafe.addViewCount", num);
 	}
 
 }
