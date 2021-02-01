@@ -305,12 +305,12 @@
 	var currentPage=1;
 	//전체 페이지의 수를 javascript 변수에 담아준다.
 	var totalPageCount=${totalPageCount};
+	//현재 로딩중인지 여부
+	var isLoading=false;
 	
 	//웹브라우저에 scoll 이벤트가 일어 났을때 실행할 함수 등록 
 	$(window).on("scroll", function(){
-		if(currentPage == totalPageCount){//만일 마지막 페이지 이면 
-			return; //함수를 여기서 종료한다. 
-		}
+		
 		//위쪽으로 스크롤된 길이 구하기
 		var scrollTop=$(window).scrollTop();
 		//window 의 높이
@@ -320,6 +320,11 @@
 		//바닥까지 스크롤 되었는지 여부
 		var isBottom = scrollTop+windowHeight + 10 >= documentHeight;
 		if(isBottom){//만일 바닥까지 스크롤 했다면...
+			if(currentPage == totalPageCount || isLoading){//만일 마지막 페이지 이면 
+				return; //함수를 여기서 종료한다. 
+			}
+			//현재 로딩 중이라고 표시한다. 
+			isLoading=true;
 			//로딩 이미지 띄우기
 			$(".loader").show();
 			
@@ -335,6 +340,8 @@
 					$(".comments ul").append(data);
 					//로딩 이미지를 숨긴다. 
 					$(".loader").hide();
+					//로딩중이 아니라고 표시한다.
+					isLoading=false;
 				}
 			});
 		}
