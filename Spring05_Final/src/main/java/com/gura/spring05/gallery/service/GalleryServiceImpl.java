@@ -134,5 +134,11 @@ public class GalleryServiceImpl implements GalleryService{
 		dto.setWriter(id);
 		dao.insert(dto);
 	}
+
+	@Override
+	public void getDetail(int num, ModelAndView mView) {
+		GalleryDto dto=dao.getData(num);
+		mView.addObject("dto", dto);
+	}
 	
 }
