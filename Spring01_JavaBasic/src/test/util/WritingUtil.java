@@ -20,6 +20,10 @@ public class WritingUtil {
 		System.out.println(greet+" 라는 인사말을 보내요!");
 	}
 	
+	public String getGreet() {
+		return "맛점 하세요";
+	}
+	
 }
 
 
