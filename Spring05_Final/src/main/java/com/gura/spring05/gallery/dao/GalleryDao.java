@@ -9,4 +9,6 @@ public interface GalleryDao {
 	public void insert(GalleryDto dto);
 	public List<GalleryDto> getList(GalleryDto dto);
 	public int getCount();
+	//안드로이드 앱 테스트를 위한 메소드
+	public List<GalleryDto> getListAll();
 }
